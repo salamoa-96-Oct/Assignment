@@ -1,0 +1,18 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+      {
+          "Effect": "Allow",
+          "Principal": {
+              "Federated": "${federated}"
+          },
+          "Action": "sts:AssumeRoleWithWebIdentity",
+          "Condition": {
+              "StringEquals": {
+                  "${eks_oidc_issuer_id}:aud": "sts.amazonaws.com",
+                  "${eks_oidc_issuer_id}:sub": "system:serviceaccount:kube-system:aws-node"
+              }
+          }
+      }
+  ]
+}
